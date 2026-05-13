@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===================== */
+/* VARIÁVEIS (modo escuro padrão) */
+/* ===================== */
+:root {
+  --fundo-gradiente: radial-gradient(circle at center, #021422 0%, #000 70%);
+  --cor-texto: #f2f2f2;
+  --cor-texto-cell:#000;
+  --cor-neon: #00feff;
+  --cor-celula: #0e3c62;
+
+  --brilho-x:
+    0 0 10px #7ee8fa,
+    0 0 20px #00C2FF,
+    0 0 40px #5fc2f4,
+    0 0 80px #5fc2f4;
+    /* lista */
+  --cor-li-bg: #040f19;
+  --cor-li-borda: #00f0ff;
+  --cor-li-texto: #999;
+  --cor-li-hover-bg: #00f0ff;
+  --cor-li-hover-texto: #000;
+
+  --cor-li-before-after: #040f19;
+  --cor-li-before-after-hover: #2cb6bb;
+  --butão-box-shadow:  inset 1px 1px 10px #7ee8fa;
+        /* btntema*/
+  --button-background-color: #ffffff;
+  --button-box-shadow: 0 0 10px #00f0ff;
+
+  --circle-after-background-color: #ffff00;
+  --circle-after-top: 0;
+  --circle-after-left: 0;
+
+  --star-fill: #fff;
+  --star-opacity: 0;
+  --card-p: #5FC2F4;
+  --card-background: linear-gradient(135deg, rgba(28, 119, 195, 0.2), rgba(7, 30, 49, 0.8));
+  --card-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
+                inset 0 0 15px #5FC2F41A;
+  --cod-card-border: 1px solid rgba(255,255,255,0.1);
+ --color-td-historico: #ffff;
+}
+
+/* ===================== */
+/* MODO CLARO */
+/* ===================== */
+body.light-mode {
+  --fundo-gradiente: radial-gradient(circle at center, #10aae7b6 0%, #fdfdfd 70%);
+  --cor-texto: #111;
+  --cor-texto-cell:#f2f2f2;
+  --cor-neon: #1c78c3d5;
+  --cor-celula: #cfe3ff;
+
+  --brilho-x:
+    0 0 10px #0e3c62,
+    0 0 20px #071e31,
+    0 0 40px #040f19,
+    0 0 80px #000;
+ 
+  --cor-li-bg: #e6f0ff;
+  --cor-li-borda: #0e3c62;
+  --cor-li-texto: #444;
+  --cor-li-hover-bg: #071e31;
+  --cor-li-hover-texto: #fff;
+
+  --cor-li-before-after: #d6e6ff;
+  --cor-li-before-after-hover: #0e3c62;
+  --butão-box-shadow:  inset 1px 1px 10px #0077ff;
+  --button-background-color: #000000;
+  --button-box-shadow: 0 0 10px #0077ff;
+
+          /* btntema*/
+  --circle-after-background-color: #000000;
+  --circle-after-top: -0.4vh;
+  --circle-after-left: 0.4vh;
+
+  --star-opacity: 1;
+  --card-p: #024e74;
+  --card-background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.4), 
+    rgba(95, 194, 244, 0.1)
+  );
+  --card-box-shadow:0 8px 32px 0 rgba(31, 38, 135, 0.1), 
+                inset 0 0 15px rgba(255, 255, 255, 0.5); 
+   --cod-card-border: 2px solid rgba(102, 101, 101, 0.3);
+  --color-td-historico: #0e3c62;
+}
+
+
+
+/* ===================== */
+/* TRANSIÇÃO SUAVE (ANIMAÇÃO) */
+/* ===================== */
+body {
+  background: var(--fundo-gradiente);
+  color: var(--cor-texto);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 20px 16px;
+
+  transition: 
+    background 0.6s ease,
+    color 0.4s ease;
+}
+
+/* brilho de fundo */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: var(--cor-neon);
+  filter: blur(200px);
+  opacity: 0.15;
+  z-index: 0;
+
+  transition: background 0.6s ease;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.btntema {
+  background-color: var(--button-background-color);
+  position: fixed;
+  top: 20px;
+  left: 6vh;
+  display: flex;
+
+  width: 3.7vh;
+  height: 3.7vh;
+
+  border: 0;
+  border-radius: 20%;
+
+  box-shadow: var(--button-box-shadow);
+  transition: 0.4s ease;
+
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.btntema:hover {
+  box-shadow:
+    0 0 5px var(--cor-neon),
+    0 0 10px var(--cor-neon),
+    0 0 20px var(--cor-neon);
+}
+.circle {
+  background-color: #FFFF00;
+  position: relative;
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  transition: 0.4s ease;
+  z-index: 1;
+}
+
+/* sombra da lua */
+.circle::after {
+  background-color: var(--circle-after-background-color);
+
+  position: absolute;
+  top: var(--circle-after-top);
+  left: var(--circle-after-left);
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  content: "";
+
+  transition: 0.4s ease;
+}
+
+/* estrela */
+.star {
+  position: absolute;
+
+  color: var(--star-fill);
+  opacity: var(--star-opacity);
+
+  font-size: 1vh;
+
+  top: 0.6vh;
+  right: 0.6vh;
+
+  transition: 0.4s ease;
+  z-index: 2;
+}
+
+  /* ===================== */
+         /* LOGO */
+  /* ===================== */
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeInLogo 0.5s ease forwards 0.5s, moveUp 1s ease forwards 3s;
+  font-size: clamp(40px, 15vw, 80px); /* tamanho fluido */
+   transition: color 0.4s ease;
+}
+
+/* Letras LE e RO */
+.logo .letters {
+  color: var(--cor-texto);
+  position: relative;
+  opacity: 0;
+}
+
+.logo .left {
+  transform: translateX(60px);
+  animation: slideLeft 1s ease forwards 1s;
+}
+
+.logo .right {
+  transform: translateX(-60px);
+  animation: slideRight 1s ease forwards 1s;
+}
+
+/* Letra X central */
+.logo .x {
+   color: var(--cor-neon);
+  text-shadow: var(--brilho-x);
+  opacity: 0;
+  transform: scale(0.6);
+  animation: glowIn 1s ease forwards, pulse 3s ease-in-out infinite 3s;
+  font-size: clamp(1em, 5vw, 1.25em); /* tamanho fluido do X */
+  margin: 0 10px;
+  line-height: 0.9;
+  transition: 
+    color 0.4s ease,
+    text-shadow 0.4s ease;
+
+}
+
+/* === Animações === */
+@keyframes fadeInLogo {
+  to { opacity: 1; }
+}
+
+@keyframes glowIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+
+/* Brilho pulsante do X */
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: var(--brilho-x);
+  }
+  50% {
+    text-shadow:
+      0 0 20px #7ee8fa,
+      0 0 40px #00C2FF,
+      0 0 80px #5fc2f4,
+      0 0 120px #5fc2f4;
+  }
+}
+
+/* Ajuste de animação das letras para telas menores */
+.logo .left {
+  transform: translateX(clamp(20px, 5vw, 60px));
+}
+
+.logo .right {
+  transform: translateX(clamp(-60px, -5vw, -20px));
+}
+.modo {
+  margin-top: 5px; /* espaço entre logo e modo */
+  margin-bottom: 25px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 3vw, 26px);
+  color:var(--cor-texto);
+  opacity: 0;
+  animation: fadeInModo 1s ease forwards 2s; /* fade-in depois do logo */
+}
+
+/* Animação para o modo */
+@keyframes fadeInModo {
+  to { opacity: 1; }
+}
+.cell {
+  width: 60px;
+  height: 60px;
+  /* Mudança aqui: background com transparência */
+  background-color: rgba(14, 60, 98, 0.2); 
+  backdrop-filter: blur(5px); /* Dá um toque de vidro */
+  border: 1px solid rgba(95, 194, 244, 0.2);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  user-select: none;
+  transition: all 0.4s ease;
+}
+
+/* Animação para o Blur Laranja (Tempo < 40s) */
+.alerta-laranja::before {
+  background: #ffa500 !important; /* Muda o blur para laranja */
+  opacity: 0.3 !important; /* Aumenta um pouco a visibilidade */
+  animation: pulsarLaranja 1.5s infinite alternate;
+}
+
+/* Animação para o Blur Vermelho (Tempo < 15s) */
+.alerta-vermelho::before {
+  background: #ff4d4d !important; /* Muda o blur para vermelho */
+  opacity: 0.4 !important;
+  animation: pulsarVermelho 0.8s infinite alternate;
+}
+
+@keyframes pulsarLaranja {
+  from { filter: blur(200px) brightness(1); }
+  to { filter: blur(150px) brightness(1.5); }
+}
+
+@keyframes pulsarVermelho {
+  from { filter: blur(200px) brightness(1); }
+  to { filter: blur(120px) brightness(2); }
+}
+
+/* Opcional: Faz as células vibrarem levemente no vermelho */
+.alerta-vermelho .cell {
+    border: 1px solid rgba(255, 77, 77, 0.3);
+}
+/* --- ESTADO LARANJA (40s) --- */
+.alerta-laranja .logo .x {
+    color: #ffa500 !important;
+    text-shadow: 0 0 20px #ffa500 !important;
+}
+
+.alerta-laranja .cell {
+    border-color: rgba(255, 165, 0, 0.5);
+    background-color: rgba(255, 165, 0, 0.05); /* Leve tom laranja nas células */
+}
+
+/* --- ESTADO VERMELHO (15s) --- */
+.alerta-vermelho .logo .x {
+    color: #ff4d4d !important;
+    text-shadow: 0 0 30px #ff4d4d !important;
+}
+
+.alerta-vermelho .cell {
+    border-color: rgba(255, 77, 77, 0.6);
+    background-color: rgba(255, 77, 77, 0.1);
+    animation: shakeLigeiro 0.5s infinite ease-in-out; /* Opcional: vibração visual */
+}
+
+@keyframes shakeLigeiro {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    75% { transform: translateX(-1px); }
+}
+
+

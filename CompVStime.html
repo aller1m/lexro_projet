@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeXro - Competitivo</title>
+  <link rel="stylesheet" href="CSS/Logolex2.css">
+  <link rel="stylesheet" href="CSS/Classico.css">
+  <link rel="stylesheet" href="CSS/abinhas.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+  
+</head>
+  <body>
+    <button id="btnTutorial">?</button>
+     <button id="btnstats">
+    <span class="barra b1"></span>
+    <span class="barra b2"></span>
+    <span class="barra b3"></span>
+  </button>
+    <a href="Index.html" id="btnvoltar">☰</a>
+    <button id="btntema" class="btntema">
+        <div class="circle"></div>
+        <i class="fa-solid fa-star star"></i>
+    </button>
+    <!-- Logo animada -->
+    <div class="logo">
+      <span class="letters left"><i>LE</i></span>
+      <span class="x"><i>X</i></span>
+      <span class="letters right"><i>RO</i></span>
+    </div>
+    <div class="modo">Modo competitivo:👤VS⏳</div>
+  
+    <div id="modalModoCompetitivo" class="twoverlay">
+    <div class="aba-box">
+      <h2>Selecione o Tempo</h2>
+      <p>Quanto tempo você precisa?</p>
+      <div class="botoes-tempo">
+        <button onclick="configurarModo(120)">Mamão com açúcar</button>
+        <button onclick="configurarModo(80)">De boa</button>
+        <button onclick="configurarModo(45)">Correndo</button>
+      </div>
+    </div>
+    </div>
+ 
+
+    <div id="cronometro-container">
+        <div id="cronometro">02:00</div>
+    </div>
+
+    <div id="game"></div>
+        
+
+    <div id="tutorialOverlay" class="overlay hidden">
+
+    <!-- Caixa do tutorial -->
+    <div class="aba-box">
+
+      <button class="close-btn" id="fecharTutorial">✕</button>
+
+      <h2>Como jogar</h2>
+
+      <p>Descubra as palavras certas. Depois de cada tentativa, as peças mostram o quanto você está da solução.</p>
+
+      <div class="exemplo">
+        <div class="letra correta">T</div>
+        <div class="letra">U</div>
+        <div class="letra">R</div>
+        <div class="letra">M</div>
+        <div class="letra">A</div>
+      </div>
+      <p>A letra <b>T</b> faz parte da palavra e está na posição correta.</p>
+
+      <div class="exemplo">
+        <div class="letra">V</div>
+        <div class="letra">I</div>
+        <div class="letra presente">O</div>
+        <div class="letra">L</div>
+        <div class="letra">A</div>
+      </div>
+      <p>A letra <b>O</b> faz parte da palavra mas em outra posição.</p>
+
+      <div class="exemplo">
+        <div class="letra">P</div>
+        <div class="letra">U</div>
+        <div class="letra">L</div>
+        <div class="letra errada">G</div>
+        <div class="letra">A</div>
+      </div>
+      <p>A letra <b>G</b> não faz parte da palavra.</p>
+
+      <p class="obs">Os acentos são preenchidos automaticamente e não são considerados nas dicas.</p>
+      <p class="obs">As palavras podem possuir letras repetidas.</p>
+
+    </div>
+  
+
+    </div>
+
+    <!-- ================== -->
+    <!-- STATS -->
+    <!-- ================== -->
+
+    <div id="OverlayStats" class="overlay">
+
+    <div class="aba-box">
+
+    <button class="close-btn" id="fecharStats">✕</button>
+
+      <h2>Seu Progresso</h2>
+        
+        <div class="stats-resumo">
+          <div class="mini-stat">
+            <span id="stat-vitorias-resumo">0</span>
+            <label>Vitórias</label>
+          </div>
+          <div class="mini-stat">
+            <span id="stat-sequencia-resumo">0</span>
+            <label>Sequência</label>
+          </div>
+        </div>
+
+        <!-- Botão para ver tudo em uma nova página -->
+        <a href="Estatisticas.html" class="btn-detalhes">Ver Estatísticas Completas</a>
+      </div>
+    </div> 
+
+    <div id="customAlert" class="alert-box hidden">
+    <p id="alertMessage"></p>
+    <button onclick="fecharAlert()">OK</button>
+    </div>
+
+    <button class="btn-nova-partida" onclick="novaPartida()">
+    Nova Partida
+    </button>
+
+    <script src="JS/Competitivo.js"></script>
+    <script src="JS/Abas.js"></script>
+    <script src="JS/tema.js"></script>
+  </body>
+</html>

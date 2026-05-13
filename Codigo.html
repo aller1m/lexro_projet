@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeXro - Clássico</title>
+  <link rel="stylesheet" href="CSS/Logolex2.css">
+  <link rel="stylesheet" href="CSS/abinhas.css">
+  <link rel="stylesheet" href="CSS/backup.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+  
+  
+</head>
+<body>
+
+  <div class="logo" >
+    <span class="letters left"><i>LE</i></span>
+    <span class="x"><i>X</i></span>
+    <span class="letters right"><i>RO</i></span>
+  </div>
+
+  <!-- Tema -->
+  <button id="btntema" class="btntema">
+    <div class="circle"></div>
+    <i class="fa-solid fa-star star"></i>
+  </button>
+
+  <!-- Voltar -->
+  <a href="Index.html" id="btnvoltar">☰</a>
+    <h1 style="font-family: 'Oxanium', sans-serif;;">Mudando de Dispositivo?</h1>
+
+        <p class="descricao">
+        Exporte sua conta atual e importe em outro dispositivo
+        para manter suas estatísticas e progresso.
+        </p>
+
+  <main class="container">
+
+    <!-- EXPORTAR -->
+    <section class="card">
+
+      <h2>Exportar Dados</h2>
+
+      <button class="btn" onclick="exportarDados()">
+        Gerar Código
+      </button>
+
+      <textarea
+        id="codigoExportado"
+        readonly
+        placeholder="Seu código aparecerá aqui">
+      </textarea>
+
+      <button class="btn copiar" onclick="copiarCodigo()">
+        Copiar Código
+      </button>
+      <a href="Estatisticas.html" class="btn-detalhes">
+      Ver Estatísticas Completas
+    </a>
+
+    </section>
+
+    <!-- IMPORTAR -->
+    <section class="card">
+
+      <h2>Importar Dados</h2>
+
+      <textarea
+        id="codigoImportacao"
+        placeholder="Cole aqui o código">
+      </textarea>
+
+      <button class="btn importar" onclick="importarDados()">
+        Restaurar Conta
+      </button>
+      
+
+    </section>
+
+    <!-- Estatísticas -->
+    
+
+  </main>
+
+  <!-- ALERT -->
+  <div id="customAlert" class="alert-box hidden" style="  font-family: 'Oxanium', sans-serif;">
+    <p id="alertMessage"></p>
+    <button onclick="fecharAlert()">OK</button>
+  </div>
+
+  <!-- Popup de Significado -->
+
+
+
+  <script src="JS/Main.js"></script>
+  <script src="JS/Abas.js"></script>
+  <script src="JS/tema.js"></script>
+  <script src="JS/backup.js"></script>
+
+</body>
+</html>

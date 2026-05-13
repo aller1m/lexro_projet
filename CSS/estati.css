@@ -1,0 +1,150 @@
+/* Layout Geral */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Cards Estilo Futurista / Glassmorphism */
+.card {
+    background: var(--card-background);
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #5FC2F43A;
+    box-shadow: var(--card-box-shadow);/* Brilho interno */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #5fc2f4;
+    box-shadow: 0 10px 20px rgba(28, 119, 195, 0.4);
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card p {
+    color: var(--card-p); /* Azul mais claro para o rótulo */
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.card h3 {
+    color: var(--cor-texto);
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(95, 194, 244, 0.5); /* Efeito neon no valor */
+}
+
+/* Tabela de Histórico */
+.historico-tabela {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* Espaço entre as linhas */
+    background: transparent;
+}
+
+.historico-tabela th {
+    background-color: transparent;
+    color:var(--cor-li-borda);
+    padding: 15px;
+    border-bottom: 2px solid #1c77c3;
+}
+
+.historico-tabela tr {
+    background: rgba(28, 119, 195, 0.1);
+    transition: transform 0.2s;
+    color:var(--cor-li-borda);
+}
+
+.historico-tabela td {
+    padding: 12px;
+    color:var(--color-td-historico);
+    font-family: 'Oxanium', sans-serif;
+}
+
+.historico-tabela tr:hover {
+    background: rgba(95, 194, 244, 0.15);
+    transform: scale(1.01);
+}
+
+/* ==================== */
+/* RESPONSIVIDADE MOBILE */
+/* ==================== */
+@media (max-width: 768px) {
+    .grid-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 20px 15px;
+    }
+
+    .card h3 {
+        font-size: 2rem;
+    }
+
+    .card p {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .historico-tabela {
+        font-size: 0.85rem;
+        border-collapse: collapse;
+    }
+
+    .historico-tabela thead {
+        display: none;
+    }
+
+    .historico-tabela tr {
+        display: block;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .historico-tabela td {
+        display: block;
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid rgba(95, 194, 244, 0.2);
+    }
+
+    .historico-tabela td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #5fc2f4;
+        display: inline-block;
+        width: 80px;
+        margin-right: 10px;
+    }
+
+    .historico-tabela tr:hover {
+        transform: none;
+        background: rgba(95, 194, 244, 0.2);
+    }
+}

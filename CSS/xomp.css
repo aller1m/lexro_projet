@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===================== */
+/* VARIÁVEIS (modo escuro padrão) */
+/* ===================== */
+:root {
+  --fundo-gradiente: radial-gradient(circle at center, #021422 0%, #000 70%);
+  --cor-texto: #f2f2f2;
+  --cor-neon: #00feff;
+  --cor-celula: #011b50;
+
+  --brilho-x:
+    0 0 10px #7ee8fa,
+    0 0 20px #00C2FF,
+    0 0 40px #5fc2f4,
+    0 0 80px #5fc2f4;
+    /* lista */
+  --cor-li-bg: #040f19;
+  --cor-li-borda: #00f0ff;
+  --cor-li-texto: #999;
+  --cor-li-hover-bg: #00f0ff;
+  --cor-li-hover-texto: #000;
+
+  --cor-li-before-after: #040f19;
+  --cor-li-before-after-hover: #2cb6bb;
+  --butão-box-shadow:  inset 1px 1px 10px #000000;
+  --btn-background-color: #00f0ff;
+  --btn-box-shadow: inset 2px 2px 10px #040f19;;
+        /* btntema*/
+  --button-background-color: #ffffff;
+  --button-box-shadow: 0 0 10px #00f0ff;
+
+  --circle-after-background-color: #ffff00;
+  --circle-after-top: 0;
+  --circle-after-left: 0;
+
+  --star-fill: #fff;
+  --star-opacity: 0;
+}
+
+/* ===================== */
+/* MODO CLARO */
+/* ===================== */
+body.light-mode {
+  --fundo-gradiente: radial-gradient(circle at center, #10aae7b6 0%, #ffffff 70%);
+  --cor-texto: #111;
+  --cor-neon: #1c78c3d5;
+  --cor-celula: #cfe3ff;
+
+  --brilho-x:
+    0 0 10px #0e3c62,
+    0 0 20px #071e31,
+    0 0 40px #040f19,
+    0 0 80px #000;
+ 
+  --cor-li-bg: #e6f0ff;
+  --cor-li-borda: #0e3c62;
+  --cor-li-texto: #444;
+  --cor-li-hover-bg: #071e31;
+  --cor-li-hover-texto: #fff;
+
+  --cor-li-before-after: #d6e6ff;
+  --cor-li-before-after-hover: #0e3c62;
+  --butão-box-shadow:  inset 1px 1px 10px #0077ff;
+  --button-background-color: #000000;
+  --button-box-shadow: 0 0 10px #0077ff;
+  --btn-background-color: #040f19;
+  --btn-box-shadow: inset 2px 2px 10px #00f0ff;
+
+          /* btntema*/
+  --circle-after-background-color: #000000;
+  --circle-after-top: -0.4vh;
+  --circle-after-left: 0.4vh;
+
+  --star-opacity: 1;
+
+}
+
+/* ===================== */
+/* TRANSIÇÃO SUAVE (ANIMAÇÃO) */
+/* ===================== */
+body {
+  background: var(--fundo-gradiente);
+  color: var(--cor-texto);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 20px 16px;
+
+  transition: 
+    background 0.6s ease,
+    color 0.4s ease;
+}
+
+/* brilho de fundo */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: var(--cor-neon);
+  filter: blur(200px);
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+
+  transition: background 0.6s ease;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.btntema {
+  background-color: var(--button-background-color);
+  position: fixed;
+  top: 20px;
+  left: 6vh;
+  display: flex;
+
+  width: 3.7vh;
+  height: 3.7vh;
+
+  border: 0;
+  border-radius: 20%;
+
+  box-shadow: var(--button-box-shadow);
+  transition: 0.4s ease;
+
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.btntema:hover {
+  box-shadow:
+    0 0 5px var(--cor-neon),
+    0 0 10px var(--cor-neon),
+    0 0 20px var(--cor-neon);
+}
+.circle {
+  background-color: #FFFF00;
+  position: relative;
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  transition: 0.4s ease;
+  z-index: 1;
+}
+
+/* sombra da lua */
+.circle::after {
+  background-color: var(--circle-after-background-color);
+
+  position: absolute;
+  top: var(--circle-after-top);
+  left: var(--circle-after-left);
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  content: "";
+
+  transition: 0.4s ease;
+}
+
+/* estrela */
+.star {
+  position: absolute;
+
+  color: var(--star-fill);
+  opacity: var(--star-opacity);
+
+  font-size: 1vh;
+
+  top: 0.6vh;
+  right: 0.6vh;
+
+  transition: 0.4s ease;
+  z-index: 2;
+}
+
+  /* ===================== */
+         /* LOGO */
+  /* ===================== */
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeInLogo 0.5s ease forwards 0.5s, moveUp 1s ease forwards 3s;
+  font-size: clamp(40px, 15vw, 80px); /* tamanho fluido */
+   transition: color 0.4s ease;
+}
+
+/* Letras LE e RO */
+.logo .letters {
+  color: var( --cor-texto);
+  position: relative;
+  opacity: 0;
+}
+
+.logo .left {
+  transform: translateX(60px);
+  animation: slideLeft 1s ease forwards 1s;
+}
+
+.logo .right {
+  transform: translateX(-60px);
+  animation: slideRight 1s ease forwards 1s;
+}
+
+/* Letra X central */
+.logo .x {
+   color: var(--cor-neon);
+  text-shadow: var(--brilho-x);
+  opacity: 0;
+  transform: scale(0.6);
+  animation: glowIn 1s ease forwards, pulse 3s ease-in-out infinite 3s;
+  font-size: clamp(1em, 5vw, 1.25em); /* tamanho fluido do X */
+  margin: 0 10px;
+  line-height: 0.9;
+  transition: 
+    color 0.4s ease,
+    text-shadow 0.4s ease;
+
+}
+
+/* === Animações === */
+@keyframes fadeInLogo {
+  to { opacity: 1; }
+}
+
+@keyframes glowIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Brilho pulsante do X */
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: var(--brilho-x);
+  }
+  50% {
+    text-shadow:
+      0 0 20px #7ee8fa,
+      0 0 40px #00C2FF,
+      0 0 80px #5fc2f4,
+      0 0 120px #5fc2f4;
+  }
+}
+
+/* Ajuste de animação das letras para telas menores */
+.logo .left {
+  transform: translateX(clamp(20px, 5vw, 60px));
+}
+
+.logo .right {
+  transform: translateX(clamp(-60px, -5vw, -20px));
+}
+.modo {
+  margin-top: 5px; /* espaço entre logo e modo */
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 3vw, 26px);
+  color:var(--cor-texto);
+  opacity: 0;
+  animation: fadeInModo 1s ease forwards 2s; /* fade-in depois do logo */
+}
+
+/* Animação para o modo */
+@keyframes fadeInModo {
+  to { opacity: 1; }
+}
+
+.painel {
+  background: var( --cor-li-bg);
+  border: 1px solid #1c77c3;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  justify-content: center;
+}
+
+.area-jogo {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 8px;
+
+}
+
+#btnjogartempo{
+  margin-bottom:3vh;
+  text-align: center;
+  margin-top: auto; /* empurra o botão para baixo dentro do painel */
+  align-items: center;
+  align-self: center;
+  display: flex;
+  color: var(--cor-li-hover-texto);
+  background: var(--btn-background-color);
+  width: 75px;
+  height: 45px;
+  border-radius: 10%;
+  box-shadow: var(--butão-box-shadow);
+  cursor: pointer;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  justify-content: center;
+  text-decoration:none;
+  z-index: 1;
+}
+
+.btnvsamg {
+   display: flex;
+  justify-content: center; /* centraliza no meio */
+  gap: 20px; /* espaço entre os botões */
+  margin-top: 20px;
+  flex-wrap: wrap; /* importante para mobile */
+}
+.btnvsamg button{
+   color: var(--cor-li-hover-texto);
+  background: var(--btn-background-color);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10%;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: var(--butão-box-shadow);
+  min-width: 120px;
+  margin-bottom: 3vh;
+}
+.btnEntrar button{
+   color: var(--cor-li-hover-texto);
+  background: var(--btn-background-color);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10%;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: var(--butão-box-shadow);
+  min-width: 120px;
+  margin-bottom: 3vh;
+}
+.conteudo {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  body {
+    justify-content: flex-start;
+  }
+
+  .area-jogo {
+    grid-template-columns: 1fr; /* Força uma coluna só */
+    gap: 16px;
+    padding: 0;
+  }
+
+  .painel {
+    min-height: auto;
+  }
+}
+
+
+

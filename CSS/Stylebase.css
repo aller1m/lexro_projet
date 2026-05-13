@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===================== */
+/* VARIÁVEIS (modo escuro padrão) */
+/* ===================== */
+:root {
+  --fundo-gradiente: radial-gradient(circle at center, #021422 0%, #000 70%);
+  --cor-texto: #f2f2f2;
+  --cor-neon: #00feff;
+  --cor-celula: ##0e3c62;
+
+  --brilho-x:
+    0 0 10px #7ee8fa,
+    0 0 20px #00C2FF,
+    0 0 40px #5fc2f4,
+    0 0 80px #5fc2f4;
+    /* lista */
+  --cor-li-bg: #040f19;
+  --cor-li-borda: #00f0ff;
+  --cor-li-texto: #999;
+  --cor-li-hover-bg: #00f0ff;
+  --cor-li-hover-texto: #000;
+
+  --cor-li-before-after: #040f19;
+  --cor-li-before-after-hover: #2cb6bb;
+  --butão-box-shadow:  inset 1px 1px 10px #7ee8fa;
+        /* btntema*/
+  --button-background-color: #ffffff;
+  --button-box-shadow: 0 0 10px #00f0ff;
+
+  --circle-after-background-color: #ffff00;
+  --circle-after-top: 0;
+  --circle-after-left: 0;
+
+  --star-fill: #fff;
+  --star-opacity: 0;
+}
+
+/* ===================== */
+/* MODO CLARO */
+/* ===================== */
+body.light-mode {
+  --fundo-gradiente: radial-gradient(circle at center, #10aae7b6 0%, #ffffff 70%);
+  --cor-texto: #111;
+  --cor-neon: #1c78c3d5;
+  --cor-celula: #cfe3ff;
+
+  --brilho-x:
+    0 0 10px #0e3c62,
+    0 0 20px #071e31,
+    0 0 40px #040f19,
+    0 0 80px #000;
+ 
+  --cor-li-bg: #e6f0ff;
+  --cor-li-borda: #0e3c62;
+  --cor-li-texto: #444;
+  --cor-li-hover-bg: #071e31;
+  --cor-li-hover-texto: #fff;
+
+  --cor-li-before-after: #d6e6ff;
+  --cor-li-before-after-hover: #0e3c62;
+  --butão-box-shadow:  inset 1px 1px 10px #0077ff;
+  --button-background-color: #000000;
+  --button-box-shadow: 0 0 10px #0077ff;
+
+          /* btntema*/
+  --circle-after-background-color: #000000;
+  --circle-after-top: -0.4vh;
+  --circle-after-left: 0.4vh;
+
+  --star-opacity: 1;
+
+}
+
+/* ===================== */
+/* TRANSIÇÃO SUAVE (ANIMAÇÃO) */
+/* ===================== */
+body {
+  background: var(--fundo-gradiente);
+  color: var(--cor-texto);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 20px 16px;
+
+  transition: 
+    background 0.6s ease,
+    color 0.4s ease;
+}
+
+/* brilho de fundo */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: var(--cor-neon);
+  filter: blur(200px);
+  opacity: 0.15;
+  z-index: 0;
+
+  transition: background 0.6s ease;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.btntema {
+  background-color: var(--button-background-color);
+  position: fixed;
+  top: 20px;
+  left: 6vh;
+  display: flex;
+
+  width: 3.7vh;
+  height: 3.7vh;
+
+  border: 0;
+  border-radius: 20%;
+
+  box-shadow: var(--button-box-shadow);
+  transition: 0.4s ease;
+
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.btntema:hover {
+  box-shadow:
+    0 0 5px var(--cor-neon),
+    0 0 10px var(--cor-neon),
+    0 0 20px var(--cor-neon);
+}
+.circle {
+  background-color: #FFFF00;
+  position: relative;
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  transition: 0.4s ease;
+  z-index: 1;
+}
+
+/* sombra da lua */
+.circle::after {
+  background-color: var(--circle-after-background-color);
+
+  position: absolute;
+  top: var(--circle-after-top);
+  left: var(--circle-after-left);
+
+  height: 1.8vh;
+  width: 1.8vh;
+
+  border-radius: 50%;
+  content: "";
+
+  transition: 0.4s ease;
+}
+
+/* estrela */
+.star {
+  position: absolute;
+
+  color: var(--star-fill);
+  opacity: var(--star-opacity);
+
+  font-size: 1vh;
+
+  top: 0.6vh;
+  right: 0.6vh;
+
+  transition: 0.4s ease;
+  z-index: 2;
+}
+
+/* ===================== */
+/* LOGO */
+/* ===================== */
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--cor-texto);
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  opacity: 0;
+
+  position: absolute;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  animation: fadeInLogo 0.5s ease forwards 0.5s;
+  font-size: clamp(40px, 15vw, 120px);
+
+  transition: color 0.4s ease;
+}
+
+/* Letras */
+.logo .letters {
+  color: var(--cor-texto);
+  position: relative;
+  opacity: 0;
+}
+
+/* animações laterais */
+.logo .left {
+  transform: translateX(clamp(20px, 5vw, 60px));
+  animation: slideLeft 1s ease forwards 1s;
+}
+
+.logo .right {
+  transform: translateX(clamp(-60px, -5vw, -20px));
+  animation: slideRight 1s ease forwards 1s;
+}
+
+/* X neon */
+.logo .x {
+  color: var(--cor-neon);
+  text-shadow: var(--brilho-x);
+
+  opacity: 0;
+  transform: scale(0.6);
+
+  animation: glowIn 1s ease forwards, pulse 3s ease-in-out infinite 3s;
+
+  font-size: clamp(1em, 5vw, 1.25em);
+  margin: 0 10px;
+  line-height: 0.9;
+
+  transition: 
+    color 0.4s ease,
+    text-shadow 0.4s ease;
+}
+
+/* ===================== */
+/* MENU */
+/* ===================== */
+
+#menu{
+  margin-top: 165px;
+}
+
+@media (max-width: 420px) {
+  #menu{
+    margin-top: 125px;
+    margin-left: 15%;
+  }
+}
+
+/* ===================== */
+/* CELULAS */
+/* ===================== */
+.cell {
+  width: 60px;
+  height: 60px;
+  background-color: var(--cor-celula);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--cor-texto);
+  text-transform: uppercase;
+  user-select: none;
+
+  transition: 
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* ===================== */
+/* ANIMAÇÕES */
+/* ===================== */
+@keyframes fadeInLogo {
+  to { opacity: 1; }
+}
+
+@keyframes glowIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes moveUp {
+  to { transform: translateY(-12vh) scale(0.7); }
+}
+
+/* brilho pulsante */
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: var(--brilho-x);
+  }
+  50% {
+    text-shadow:
+      0 0 20px #7ee8fa,
+      0 0 40px #00C2FF,
+      0 0 80px #5fc2f4,
+      0 0 120px #5fc2f4;
+  }
+}

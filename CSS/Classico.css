@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+:root {
+  --cell-size: 60px;
+  --cell-gap: 10px;
+}
+
+body {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+#game {
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  gap: var(--cell-gap);
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(5, var(--cell-size));
+  gap: var(--cell-gap);
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: var(--cor-celula);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: clamp(18px, calc(var(--cell-size) * 0.45), 28px);
+  font-weight: bold;
+  color: var(--cor-texto);
+  text-transform: uppercase;
+  user-select: none;
+
+  transition: 
+    background-color 0.4s ease,
+    color 0.4s ease;
+
+
+}
+
+/* Estilo da célula ativa (onde o usuário vai digitar) */
+.cell.cell-active {
+  border-color: #5fc2f4 !important; 
+  transform: scale(1.05); 
+  box-shadow: 0 0 10px rgba(95, 194, 244, 0.849); /* Brilho extra */
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.cell:not(:empty) {
+  animation: pop 0.1s ease-in-out;
+  box-shadow: inset 1px 1px 10px #1c77c3; /* Cor de quando a célula tem letra mas não é a ativa */
+}
+
+#teclado span {
+  display: inline-block;
+  padding: 10px 14px;
+  margin: 3px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+#teclado span.incorreta {
+  background-color: #555;
+  color: #fff;
+}
+
+#cronometro-container {
+    position: fixed;
+    top: 24vh;
+    right: 2vh;
+    z-index: 5000;
+
+    background:  var(--cor-li-bg);;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid #5fc2f4;
+
+    box-shadow: 0 0 12px rgba(95,194,244,0.35);
+}
+
+#cronometro {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    #cronometro-container {
+        position: relative;   /* deixa de flutuar */
+        top: auto;
+        right: auto;
+        transform: none;
+
+        margin: 15px auto;
+        width: fit-content;
+
+        padding: 10px 18px;
+    }
+
+    #cronometro {
+        font-size: 1.5rem;
+    }
+
+    #game {
+        margin-top: 15px;
+    }
+
+}
+
+/* Telas muito pequenas (evita overflow horizontal do grid 5x5) */
+@media (max-width: 420px) {
+  :root {
+    --cell-size: clamp(44px, 15vw, 56px);
+    --cell-gap: clamp(4px, 2vw, 8px);
+  }
+
+  #game {
+    margin-top: 20px;
+  }
+
+  .row {
+  display: grid;
+  grid-template-columns: repeat(5, 14vw);
+  gap: var(--cell-gap);
+  }
+
+  .cell{
+    max-width: 17vw;
+    max-height: 17vw;
+  }
+
+}
+
+.botoes-tempo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.botoes-tempo button {
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1c77c3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.botoes-tempo button:hover {
+  transform: scale(1.05);
+  background-color: #5fc2f4;
+}
+
+
+
+
+
